@@ -20,13 +20,13 @@ router.get("/countbycity", countByCity);
 router.get("/countbytype", countByType);
 
 // Create verifyAdmin
-router.post("/", createHotel);
+router.post("/", verifyAdmin, createHotel);
 
 // Update  verifyAdmin
-router.put("/:id", updateHotel);
+router.put("/:id", verifyAdmin, updateHotel);
 
 // Delete specific Hotel   verifyAdmin
-router.delete("/:id", deleteHotel);
+router.delete("/:id", verifyAdmin, deleteHotel);
 
 // Get specific Hotel
 router.get("/:id", getAnHotel);

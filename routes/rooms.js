@@ -12,16 +12,16 @@ import {
 const router = express.Router();
 
 // Create verifyAdmin
-router.post("/:hotelid", createRoom);
+router.post("/:hotelid", verifyAdmin, createRoom);
 
 // Update   verifyAdmin
-router.put("/:id", updateRoom);
+router.put("/:id", verifyAdmin, updateRoom);
 
 // updateRoomAvailability
 router.put("/availability/:id", updateRoomAvailability);
 
 // Delete specific hotel room  verifyAdmin
-router.delete("/:roomId/:hotelId", deleteRoom);
+router.delete("/:roomId/:hotelId", verifyAdmin, deleteRoom);
 
 // Get specific hotel
 router.get("/:id", getAnRoom);
