@@ -1,18 +1,18 @@
 import User from "../models/User.js";
 import createError from "../utils/error.js";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+// import bcrypt from "bcrypt";
 
 // User Register
 export const register = async (req, res, next) => {
   try {
-    const salt = bcrypt.genSaltSync(10);
-    const hashPassword = bcrypt.hashSync(req.body.password, salt);
+    // const salt = bcrypt.genSaltSync(10);
+    // const hashPassword = bcrypt.hashSync(req.body.password, salt);
 
     const newUser = new User({
       username: req.body.username,
       email: req.body.email,
-      password: hashPassword,
+      password: req.body.password,
       isAdmin: req.body.isAdmin || false,
     });
     console.log("newUser", newUser);
