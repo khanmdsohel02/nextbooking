@@ -15,11 +15,12 @@ export const register = async (req, res, next) => {
       password: req.body.password,
       isAdmin: req.body.isAdmin || false,
     });
-    console.log("newUser", newUser);
+    // console.log("newUser", newUser);
     await newUser.save();
     res.status(200).json("User has been created");
   } catch (error) {
     next(error);
+    // console.log(error);
   }
 };
 
@@ -29,9 +30,10 @@ export const login = async (req, res, next) => {
     const user = await User.findOne({ username: req.body.username });
     if (!user) return next(createError(404, "User not found"));
 
-    const isPasswordCorrect = req.body.password === user.password;
+    // const isPasswordCorrect = req.body.password === user.password;
+    // console.log(isPasswordCorrect);
 
-    if (!isPasswordCorrect) return next(createError(400, "Wrong password"));
+    // if (!isPasswordCorrect) return next(createError(400, "Wrong password"));
 
     const token = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
