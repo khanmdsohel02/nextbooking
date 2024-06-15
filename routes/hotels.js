@@ -9,7 +9,6 @@ import {
   getHotelRooms,
   updateHotel,
 } from "../controllers/hotel.js";
-import { verifyAdmin } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
@@ -20,13 +19,13 @@ router.get("/countbycity", countByCity);
 router.get("/countbytype", countByType);
 
 // Create verifyAdmin
-router.post("/", verifyAdmin, createHotel);
+router.post("/", createHotel);
 
 // Update  verifyAdmin
-router.put("/:id", verifyAdmin, updateHotel);
+router.put("/:id", updateHotel);
 
 // Delete specific Hotel   verifyAdmin
-router.delete("/:id", verifyAdmin, deleteHotel);
+router.delete("/:id", deleteHotel);
 
 // Get specific Hotel
 router.get("/:id", getAnHotel);
