@@ -8,14 +8,14 @@ export const register = async (req, res, next) => {
   try {
     // const salt = bcrypt.genSaltSync(10);
     // const hashPassword = bcrypt.hashSync(req.body.password, salt);
-
+    console.log("req.body", req.body);
     const newUser = new User({
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
       isAdmin: req.body.isAdmin || false,
     });
-    // console.log("newUser", newUser);
+    console.log(req.body);
     await newUser.save();
     res.status(200).json("User has been created");
   } catch (error) {
@@ -30,10 +30,10 @@ export const login = async (req, res, next) => {
     const user = await User.findOne({ username: req.body.username });
     if (!user) return next(createError(404, "User not found"));
 
-    // const isPasswordCorrect = req.body.password === user.password;
-    // console.log(isPasswordCorrect);
+    const isPasswordCorrect = req.body.password === user.password;
+    console.log(isPasswordCorrect);
 
-    // if (!isPasswordCorrect) return next(createError(400, "Wrong password"));
+    if (!isPasswordCorrect) return next(createError(400, "Wrong password"));
 
     const token = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
