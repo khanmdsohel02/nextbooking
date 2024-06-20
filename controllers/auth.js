@@ -10,7 +10,7 @@ export const register = async (req, res, next) => {
       password: req.body.password,
       isAdmin: req.body.isAdmin || false,
     });
-    console.log(req.body);
+
     await newUser.save();
     res.status(200).json("User has been created");
   } catch (error) {
@@ -32,7 +32,7 @@ export const login = async (req, res, next) => {
       return next(createError(400, "Wrong password or username!"));
 
     const { password, isAdmin, ...otherDetails } = user._doc;
-    console.log(isAdmin);
+
     res.status(200).json({ details: { ...otherDetails, isAdmin } });
   } catch (err) {
     next(err);
